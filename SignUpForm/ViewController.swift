@@ -32,6 +32,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
     
     let datePicker = UIDatePicker()
     
+    var currentDate = Date()
+    var currentDateString: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +49,15 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
         txtViewAboutYou.delegate = self
         
         createDatePicker()
+        
+        print(currentDate)
+        
+        //current date format
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        currentDateString = dateFormatter.string(from: currentDate)
+        print(currentDateString)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -73,6 +85,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
         }
         return true
     }
+    
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
@@ -109,8 +122,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
         txtFieldDOB.text = dateFormatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
-    
-    
     
     @IBAction func btnSignUpClickAction(_ sender: Any) {
         if txtFieldFirstName.text == "" || !validateString(value: txtFieldFirstName.text!){
@@ -161,6 +172,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
                                                   delegate: nil, cancelButtonTitle: "OK")
             alert.show()
 
+        } else if txtFieldDOB.text == currentDateString {
+            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please select correct date",
+                                                  delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
         } else {
             let fullName: String = txtFieldFirstName.text! + " " + txtFieldLastName.text!
             var alert : UIAlertView = UIAlertView(title: "Congratulations", message: "\(fullName) your account has been created",
