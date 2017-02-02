@@ -66,8 +66,39 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
         self.view.endEditing(true)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField.returnKeyType == UIReturnKeyType.default {
+            textField.returnKeyType = UIReturnKeyType.next
+        }
+        
+        //Next button added to numeric keyboard
+        let toolbarNextButtonOnNumPad = UIToolbar()
+        let nextButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbarNextButtonOnNumPad.setItems([nextButton], animated: false)
+        
+        txtFieldCountryCode.inputAccessoryView = toolbarNextButtonOnNumPad
+        txtFieldMobileNo.inputAccessoryView = toolbarNextButtonOnNumPad
+        
+        /*if textField == txtFieldCountryCode {
+            let toolbarNextButtonOnNumPad = UIToolbar()
+            let nextButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(numpadDonePressed(_: )))
+            toolbarNextButtonOnNumPad.setItems([nextButton], animated: false)
+            
+            txtFieldCountryCode.inputAccessoryView = toolbarNextButtonOnNumPad
+        }*/
+        return true
+    }
+    
+    /*func numpadDonePressed(_ txtField: UITextField){
+        if txtField == txtFieldCountryCode {
+            self.txtFieldMobileNo.becomeFirstResponder()
+        } else if txtField == txtFieldMobileNo {
+            self.txtFieldPassword.becomeFirstResponder()
+        }
+    }*/
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    
         if textField == self.txtFieldFirstName {
             self.txtFieldLastName.becomeFirstResponder()
         } else if textField == self.txtFieldLastName {
@@ -85,9 +116,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
         } else if textField == self.txtFieldDOB {
             self.txtViewAboutYou.becomeFirstResponder()
         }
+        
         return true
     }
-    
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
@@ -97,11 +128,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == txtFieldConfirmPassword {
-            
-        }
-    }
     func createDatePicker() {
         
         //format for picker
