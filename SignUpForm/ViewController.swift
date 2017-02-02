@@ -33,6 +33,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
     let datePicker = UIDatePicker()
     
     var currentDate = Date()
+    
+    //current date changed to string
     var currentDateString: String = ""
     
     override func viewDidLoad() {
@@ -95,6 +97,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == txtFieldConfirmPassword {
+            
+        }
+    }
     func createDatePicker() {
         
         //format for picker
@@ -125,70 +132,88 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
     
     @IBAction func btnSignUpClickAction(_ sender: Any) {
         if txtFieldFirstName.text == "" || !validateString(value: txtFieldFirstName.text!){
-            
-            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please enter your first name.",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alert = UIAlertController(title: "Oops!", message: "Please enter your first name.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
         } else if txtFieldLastName.text == "" || !validateString(value: txtFieldLastName.text!) {
-            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please enter your last name.",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alert = UIAlertController(title: "Oops!", message: "Please enter your last name.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
         } else if !isValidEmail(testStr: txtFieldEmail.text!) {
-            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please enter correct email address",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alert = UIAlertController(title: "Oops!", message: "Please enter correct email address.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
         } else if !validateCountryCode(value: txtFieldCountryCode.text!) {
-            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please enter correct country code",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alert = UIAlertController(title: "Oops!", message: "Please enter correct country code.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
 
         } else if !validateMobileNo(value: txtFieldMobileNo.text!) {
-            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please enter correct mobile no.",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-
+            let alert = UIAlertController(title: "Oops!", message: "Please enter correct mobile no.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
         } else if txtFieldPassword.text == "" {
-            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please enter a password",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-
+            let alert = UIAlertController(title: "Oops!", message: "Please enter correct password", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
         } else if txtFieldConfirmPassword.text == "" {
-            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please confirm your password",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-
+            let alert = UIAlertController(title: "Oops!", message: "Please confirm your password.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
         } else if txtFieldPassword.text != txtFieldConfirmPassword.text {
-            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please confirm your password again",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alert = UIAlertController(title: "Oops!", message: "Please confirm your password again.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
 
         } else if txtFieldDOB.text == "" {
-            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please enter DOB first",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-
+            let alert = UIAlertController(title: "Oops!", message: "Please enter valid DOB", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
         } else if txtViewAboutYou.text == "" {
-            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please write something about yourself.",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alert = UIAlertController(title: "Oops!", message: "Please write something about you.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
 
         } else if txtFieldDOB.text == currentDateString {
-            var alert : UIAlertView = UIAlertView(title: "Oops!", message: "Please select correct date",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alert = UIAlertController(title: "Oops!", message: "Please enter valid DOB", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
         } else {
             let fullName: String = txtFieldFirstName.text! + " " + txtFieldLastName.text!
-            var alert : UIAlertView = UIAlertView(title: "Congratulations", message: "\(fullName) your account has been created",
-                                                  delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-
+            let alert = UIAlertController(title: "Oops!", message: "Congratulations! \(fullName) your account has been created successfully", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in print("you have pressed the Cancel button")
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
     func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         
-        var emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         let result = emailTest.evaluate(with: testStr)
         return result
     }
@@ -201,7 +226,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate 
     }
     
     func validateCountryCode(value: String) -> Bool {
-        let COUNTRY_CODE_REGEX = "^\\d{3}$"
+        let COUNTRY_CODE_REGEX = "^\\d{2}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", COUNTRY_CODE_REGEX)
         let result =  phoneTest.evaluate(with: value)
         return result
